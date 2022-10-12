@@ -9,6 +9,9 @@ services:
     build:
       #context: currentDirectory
       context: .
+      #for dev environment
+      args:
+        - DEV=true
     #map 8000 of system to 8000 port of docker image
     ports:
       - '8000:8000'
