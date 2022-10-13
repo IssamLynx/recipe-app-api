@@ -1,0 +1,23 @@
+---
+name: Checks
+
+on: [push]
+
+# automated jobs
+jobs:
+  # first job
+  test-lint:
+    # name of the job
+    name: Test and Lint
+    runs-on: ubuntu-20.04
+    # steps of jobs
+    steps:
+      # checkout code
+      - name: Checkout
+        uses: actions/checkout@v2
+        # run tests
+      - name: Test
+        run: docker-compose run --rm app sh -c "python manage.py test"
+        # run linting with flake8
+      - name: Lint
+        run: docker-compose run --rm app sh -c "flake8"
