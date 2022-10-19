@@ -9,6 +9,8 @@ from django.core.management import call_command
 from django.db.utils import OperationalError
 from django.test import SimpleTestCase
 
+# mocking databse with patch
+
 
 @patch('django.db.utils.ConnectionHandler.__getitem__')
 class CommandTests(SimpleTestCase):
