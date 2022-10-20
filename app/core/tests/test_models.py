@@ -4,6 +4,8 @@ Tests for models.
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from app.core.models import User
+
 
 class ModelTests(TestCase):
     """Test models."""
@@ -31,3 +33,13 @@ class ModelTests(TestCase):
         for email, expected in sample_emails:
             user = get_user_model().objects.create_user(email, 'sample123')
             self.assertEqual(user.email, expected)
+
+    def test_create_superuser(self):
+        """Test creating a superuser."""
+        user = get_user_model().objects.create_superuser(
+            'test@example.com',
+            'test123',
+        )
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
