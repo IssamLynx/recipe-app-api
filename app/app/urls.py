@@ -1,5 +1,4 @@
 """app URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
@@ -13,13 +12,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +27,6 @@ urlpatterns = [
         'api/docs/',
         SpectacularSwaggerView.as_view(url_name='api-schema'),
         name='api-docs',
-    )
+    ),
+    path('api/user/', include('user.urls')),
 ]
